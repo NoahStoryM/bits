@@ -38,9 +38,9 @@
 (define-predicate bit? Bit)
 (define-predicate one? One)
 
-(: bit->boolean (→ Bit Boolean))
-(: boolean->bit (→ Boolean Bit))
-(define (bit->boolean bit) (eq? bit 1))
+(: bit->boolean (case→ (→ Zero False) (→ One True) (→ Bit Boolean)))
+(: boolean->bit (case→ (→ False Zero) (→ True One) (→ Boolean Bit)))
+(define (bit->boolean bit) (one? bit))
 (define (boolean->bit bool) (if bool 1 0))
 
 

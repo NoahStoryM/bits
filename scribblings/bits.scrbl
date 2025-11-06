@@ -13,6 +13,28 @@ This library provides utilities for treating Racket @tech/refer{byte string} as
 a @deftech{bit matrix} with a width of 8, allowing for direct, two-dimensional
 access or modification of individual bits.
 
+@section{Bit Type}
+
+@deftype[Bit]{
+A type representing a single bit, defined as @racket[(∪ Zero One)].
+}
+
+@defproc[(bit? [v Any]) Boolean]{
+Returns @racket[#t] if @racket[v] is @racket[0] or @racket[1], @racket[#f] otherwise.
+
+@bits-examples[
+(:print-type bit?)
+]
+}
+
+@defproc[(one? [v Any]) Boolean]{
+Returns @racket[#t] if @racket[v] is @racket[1], @racket[#f] otherwise.
+
+@bits-examples[
+(:print-type one?)
+]
+}
+
 @section{Bit Matrix Operations}
 
 @defproc[(bits-ref [bs Bytes] [i Integer] [j Integer]) Bit]{
@@ -37,50 +59,15 @@ bs
 ]
 }
 
-
-@section{Bit Type and Utilities}
-
-@deftype[Bit]{
-A type representing a single bit, defined as @racket[(∪ Zero One)].
-}
-
-@defproc[(bit? [v Any]) Boolean]{
-Returns @racket[#t] if @racket[v] is @racket[0] or @racket[1], @racket[#f] otherwise.
-
-@bits-examples[
-(:print-type bit?)
-]
-}
-
-@defproc[(one? [v Any]) Boolean]{
-Returns @racket[#t] if @racket[v] is @racket[1], @racket[#f] otherwise.
-
-@bits-examples[
-(:print-type one?)
-]
-}
+@section{Type Conversions}
 
 @defproc[(bit->boolean [bit Bit]) Boolean]{
 Convert a bit to a boolean.
-
-@bits-examples[
-(:print-type bit->boolean)
-(bit->boolean 0)
-(bit->boolean 1)
-]
 }
 
 @defproc[(boolean->bit [bool Boolean]) Bit]{
 Convert a boolean to a bit.
-
-@bits-examples[
-(:print-type boolean->bit)
-(boolean->bit #f)
-(boolean->bit #t)
-]
 }
-
-@section{Type Conversions}
 
 @defproc[(bytes->natural [bs Bytes]) Natural]{
 Converts a bytes to a natural number, interpreting the bytes as a big-endian
