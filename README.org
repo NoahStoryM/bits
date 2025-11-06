@@ -1,0 +1,19 @@
+#+TITLE: Bits
+#+AUTHOR: Noah Ma
+#+EMAIL: noahstorym@gmail.com
+
+* Table of Contents                                       :TOC_5_gh:noexport:
+- [[#bits][Bits]]
+- [[#installation][Installation]]
+
+* Bits
+A small Racket library to treat a =Bytes= object as a 2D matrix of bits, with
+a width of 8. This allows for convenient, index-based reading and writing of
+individual bits within a byte vector.
+
+* Installation
+You can install it using =raco=:
+
+#+begin_src shell
+raco pkg install bits
+#+end_src
