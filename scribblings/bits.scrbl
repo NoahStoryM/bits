@@ -92,7 +92,7 @@ unsigned integer.
 }
 
 @defproc[(natural->bytes [n Natural]) Bytes]{
-Converts a natural number to a bytes using big-endian encoding.
+Converts a natural number to a mutable bytes using big-endian encoding.
 
 @bits-examples[
 (natural->bytes #x01ab)
