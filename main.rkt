@@ -1,9 +1,7 @@
 #lang typed/racket/base
 
-(provide bytes->natural
-         natural->bytes
+(provide Bit bit? one?
 
-         Bit bit? one?
          bit->boolean
          boolean->bit
 
@@ -11,32 +9,10 @@
          bits-set!)
 
 
-(: bytes->natural (→ Bytes Natural))
-(define (bytes->natural byte*)
-  (define start (sub1 (bytes-length byte*)))
-  (for/sum : Natural
-           ([byte (in-bytes byte*)]
-            [i : Integer (in-range start -1 -1)])
-    (arithmetic-shift byte (* i #o10))))
-
-(: natural->bytes (→ Natural Bytes))
-(define (natural->bytes n)
-  (cond
-    [(zero? n) #""]
-    [else
-     (define len (arithmetic-shift (+ (integer-length n) 7) -3))
-     (define byte* (make-bytes len 0))
-     (for/fold ([n : Natural n])
-               ([i : Integer (in-range (sub1 len) -1 -1)])
-       (define byte (bitwise-and n #xff))
-       (bytes-set! byte* i byte)
-       (arithmetic-shift n #o-10))
-     byte*]))
-
-
 (define-type Bit (∪ Zero One))
 (define-predicate bit? Bit)
 (define-predicate one? One)
+
 
 (: bit->boolean (case→ (→ Zero False) (→ One True) (→ Bit Boolean)))
 (: boolean->bit (case→ (→ False Zero) (→ True One) (→ Boolean Bit)))

@@ -68,20 +68,3 @@ Convert a bit to a boolean.
 @defproc[(boolean->bit [bool Boolean]) Bit]{
 Convert a boolean to a bit.
 }
-
-@defproc[(bytes->natural [bs Bytes]) Natural]{
-Converts a bytes to a natural number, interpreting the bytes as a big-endian
-unsigned integer.
-
-@bits-examples[
-(bytes->natural #"\x01\xab")
-]
-}
-
-@defproc[(natural->bytes [n Natural]) Bytes]{
-Converts a natural number to a mutable bytes using big-endian encoding.
-
-@bits-examples[
-(natural->bytes #x01ab)
-]
-}

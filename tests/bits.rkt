@@ -3,22 +3,6 @@
 (require "../main.rkt" typed/rackunit)
 
 
-(test-case "bytes->natural"
-  (check-eq? (bytes->natural #"") 0)
-  (check-eq? (bytes->natural #"\x01") 1)
-  (check-eq? (bytes->natural #"\x01\xab") (+ (* #x01 #x100) #xab)))
-
-(test-case "natural->bytes"
-  (check-equal? (natural->bytes 0) #"")
-  (check-equal? (natural->bytes 1) #"\x01")
-  (check-equal? (natural->bytes #x01ab) #"\x01\xab"))
-
-(test-case "Round-trip"
-  (check-equal? (natural->bytes (bytes->natural #"\xca\xfe\xba\xbe"))
-                #"\xca\xfe\xba\xbe")
-  (check-eq? (bytes->natural (natural->bytes 1234567890))
-             1234567890))
-
 (test-case "bit predicates"
   (check-pred bit? 0)
   (check-pred bit? 1)
